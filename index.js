@@ -33,13 +33,14 @@ app.get('/cars', async (_req, res) => {
     const { q } = _req.query;
         
     try {
-        const response = await fetch(url + q ? `?q=${q}` : '');
+        const response = await fetch(url + (q ? `?q=${q}` : ''));
 
         if (!response.ok) {
             throw new Error(`Error! status: ${response.status}`);
         }
 
         const result = await response.json();
+
         return res.json(result);
     } catch (error) {
         console.log(error);
