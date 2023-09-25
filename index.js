@@ -31,9 +31,9 @@ app.get('/cars', async (_req, res) => {
     const url = 'https://dm-assignment-commonshare.koyeb.app/api/cars';
 
     const { q } = _req.query;
-
+        
     try {
-        const response = await fetch(url + '?q=' + q);
+        const response = await fetch(url + q ? `?q=${q}` : '');
 
         if (!response.ok) {
             throw new Error(`Error! status: ${response.status}`);
